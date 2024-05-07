@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	hideTabContent();
-	showTabContent();
+	showTabContent(); 
 
 	parentTabs.addEventListener('click', (event) => {
 		event.preventDefault();

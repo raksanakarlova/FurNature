@@ -1,9 +1,4 @@
 window.addEventListener('DOMContentLoaded', () => {
-	const titleTabs = document.querySelectorAll('.title-product');
-	const widgets = document.querySelectorAll('.widget');
-	const contentTabs = document.querySelectorAll('.product-info-container');
-	const parentTabs = document.querySelector('.product-title-content');
-
 	const btnConsulting = document.querySelector('.btn-consulting');
 	const modal = document.querySelector('.modal');
 	const overlay = document.querySelector('.overlay');
@@ -11,15 +6,165 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	const forms = document.querySelectorAll('form');
 
+	// Создание карточек товара с помощью классов
+	class ProductCard {
+		constructor(
+			src, src2, src3, src4, alt, 
+			description, price, 
+			text, text2, text3, text4,
+			clrSelec, clrSelec2, clrSelec3, clrSelec4, parentSelector
+		) {
+			this.src = src;
+			this.src2 = src2;
+			this.src3 = src3;
+			this.src4 = src4;
+			this.alt = alt;
+			this.description = description;
+			this.price = price;
+			this.text = text;
+			this.text2 = text2;
+			this.text3 = text3;
+			this.text4 = text4;
+			this.clrSelec = clrSelec;
+			this.clrSelec2 = clrSelec2;
+			this.clrSelec3 = clrSelec3;
+			this.clrSelec4 = clrSelec4;
+			this.parent = document.querySelector(parentSelector);
+		}
+
+		render() {
+			const element = document.createElement('div');
+			element.innerHTML = `
+				<div class="card-container">
+						<div class="product-info-content">
+							<p class="descr">${this.description}</p>
+							<p class="price">${this.price}</p>
+							<div class="dec-line"></div>
+							<div class="colors">
+								<p class="title-color">
+									Цвет: <span class="name-color">${this.text}</span>
+												<span class="name-color hide-color">${this.text2}</span>
+												<span class="name-color hide-color">${this.text3}</span>
+												<span class="name-color hide-color">${this.text4}</span>
+								</p>
+								<div class="select-content">
+									<div class="select">
+										<div class="color ${this.clrSelec}"></div>
+									</div>
+									<div class="select hide-select">
+										<div class="color ${this.clrSelec2}"></div>
+									</div>
+									<div class="select hide-select">
+										<div class="color ${this.clrSelec3}"></div>
+									</div>
+									<div class="select hide-select">
+										<div class="color ${this.clrSelec4}"></div>
+									</div>
+								</div>
+							</div>
+								<button class="btn-add">Добавить в корзину</button>
+						</div>
+						<div>
+							<img class="picture" src=${this.src} alt=${this.alt}>
+							<img class="picture hide-picture" src=${this.src2} alt=${this.alt}>
+							<img class="picture hide-picture" src=${this.src3} alt=${this.alt}>
+							<img class="picture hide-picture" src=${this.src4} alt=${this.alt}>
+						</div>
+					</div>
+			`;
+			this.parent.append(element);
+		};
+	};
+
+	new ProductCard(
+		'img/firstCard/main.png',
+		'img/firstCard/pink.png',
+		'img/firstCard/purple.png',
+		'img/firstCard/sea.png',
+		'product',
+		'Удобный стул с элегантным дизайном, идеальный для отдыха и работы',
+		'1.399 RUB',
+		'Голубой',
+		'Розовый',
+		'Фиолетовый',
+		'Зелёный',
+		'blue',
+		'pink',
+		'purple',
+		'green',
+		'.product-info-container'
+	).render();
+
+	new ProductCard(
+		'img/secondCard/main.png',
+		'img/secondCard/brown.png',
+		'img/secondCard/blue.png',
+		'img/secondCard/olive.png',
+		'product',
+		'Эргономичный стул с современным стилем, обеспечивает комфорт и поддержку при сидении',
+		'2.399 RUB',
+		'Зелёный',
+		'Коричневый',
+		'Синий',
+		'Оливковый',
+		'green2',
+		'brown',
+		'sea',
+		'olive',
+		'.product-info-container'
+	).render();
+
+	new ProductCard(
+		'img/thirdCard/main.png',
+		'img/thirdCard/grey.png',
+		'img/thirdCard/purple.png',
+		'img/thirdCard/orange.png',
+		'product',
+		'Стильный табурет для комфортного сидения в любом интерьере',
+		'1.199 RUB',
+		'Красный',
+		'Серый',
+		'Фуксия',
+		'Оранжевый',
+		'red',
+		'grey',
+		'fuchsia',
+		'light-brown',
+		'.product-info-container'
+	).render();
+
+	new ProductCard(
+		'img/fourthCard/main.png',
+		'img/fourthCard/red.png',
+		'img/fourthCard/pink.png',
+		'img/fourthCard/green.png',
+		'product',
+		'Этот стул — ваш верный спутник  в мире сидения',
+		'3.199 RUB',
+		'Чёрный',
+		'Оранжевый',
+		'Розовый',
+		'Салатовый',
+		'black',
+		'orange',
+		'pink2',
+		'light-green',
+		'.product-info-container'
+	).render();
+
 	// Tabs
+	const titleTabs = document.querySelectorAll('.title-product');
+	const widgets = document.querySelectorAll('.widget');
+	const contentTabs = document.querySelectorAll('.card-container');
+	const parentTabs = document.querySelector('.product-title-content');
+	
 	function hideTabContent () {
 		titleTabs.forEach(el => {
 			el.classList.remove('active');
 		});
 
 		contentTabs.forEach((el) => {
-			el.classList.add('hide-content');
-			el.classList.remove('show-content');
+			el.style.display = 'none'
 		});
 
 		widgets.forEach(el => {
@@ -29,9 +174,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	function showTabContent (i = 0) {
 		titleTabs[i].classList.add('active');
-		contentTabs[i].classList.add('show-content');
-		contentTabs[i].classList.remove('hide-content');
 		widgets[i].style.visibility = 'visible';
+		contentTabs[i].style.display = 'flex';
 	}
 
 	hideTabContent();

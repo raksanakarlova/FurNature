@@ -6,13 +6,78 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	const forms = document.querySelectorAll('form');
 
-	// Создание карточек товара с помощью классов
+	// Создание карточек с преимуществами с помощью классов:
+	class AdvantagesCard {
+		constructor(src, alt, title, descSelector, description, parentSelector, ...classes) {
+			this.src = src;
+			this.alt = alt;
+			this.title = title;
+			this.descSelector = descSelector;
+			this.description = description;
+			this.classes = classes;
+			this.parent = document.querySelector(parentSelector);
+		}
+
+		render() {
+			const element = document.createElement('div');
+
+			if(this.classes.length === 0) {
+				this.element = 'advantages-card';
+				element.classList.add(this.element);
+			} else {
+				this.classes.forEach(className => element.classList.add(className))
+			}
+
+			element.innerHTML = `
+					<div class="advantages-content">
+						<div class="advantages-icon">
+							<img src=${this.src} alt=${this.alt}>
+						</div>
+
+						<h3>${this.title}</h3>
+						<p class=${this.descSelector}>${this.description}</p>
+					</div>
+			`;
+
+			this.parent.append(element);
+		};
+	};
+
+	new AdvantagesCard(
+		'img/icons/adv1.svg',
+		'icon',
+		'Удобство и функциональность',
+		'adv-describe1',
+		'Наши современные стулья обеспечивают удобство и комфорт, оптимизируют пространство и помогают организовать содержимое дома',
+		'.advantages-container'
+	).render();
+
+	new AdvantagesCard(
+		'img/icons/adv2.svg',
+		'icon',
+		'Условия доставки и сервис',
+		'adv-describe2',
+		'Вы получаете превосходный сервис, гибкую доставку и правильную осанку',
+		'.advantages-container'
+	).render();
+
+		new AdvantagesCard(
+		'img/icons/adv3.svg',
+		'icon',
+		'Эстетика и дизайн',
+		'adv-describe3',
+		'Дизайн стульев сочетает в себе стиль и практичность. Модные линии, выбор материалов соответствуют последним тендециям, придавая стульям шик и изысканность',
+		'.advantages-container'
+	).render();
+
+	// Создание карточек товара с помощью классов:
 	class ProductCard {
 		constructor(
 			src, src2, src3, src4, alt, 
 			description, price, 
 			text, text2, text3, text4,
-			clrSelec, clrSelec2, clrSelec3, clrSelec4, parentSelector
+			clrSelec, clrSelec2, clrSelec3, clrSelec4, 
+			parentSelector, ...classes
 		) {
 			this.src = src;
 			this.src2 = src2;
@@ -29,48 +94,54 @@ window.addEventListener('DOMContentLoaded', () => {
 			this.clrSelec2 = clrSelec2;
 			this.clrSelec3 = clrSelec3;
 			this.clrSelec4 = clrSelec4;
+			this.classes = classes;
 			this.parent = document.querySelector(parentSelector);
 		}
 
 		render() {
 			const element = document.createElement('div');
+			if(this.classes.length === 0) {
+				this.element = 'card-container';
+				element.classList.add(this.element);
+			} else {
+				this.classes.forEach(className => element.classList.add(className));
+			};
+
 			element.innerHTML = `
-				<div class="card-container">
-						<div class="product-info-content">
-							<p class="descr">${this.description}</p>
-							<p class="price">${this.price}</p>
-							<div class="dec-line"></div>
-							<div class="colors">
-								<p class="title-color">
-									Цвет: <span class="name-color">${this.text}</span>
-												<span class="name-color hide-color">${this.text2}</span>
-												<span class="name-color hide-color">${this.text3}</span>
-												<span class="name-color hide-color">${this.text4}</span>
-								</p>
-								<div class="select-content">
-									<div class="select">
-										<div class="color ${this.clrSelec}"></div>
-									</div>
-									<div class="select hide-select">
-										<div class="color ${this.clrSelec2}"></div>
-									</div>
-									<div class="select hide-select">
-										<div class="color ${this.clrSelec3}"></div>
-									</div>
-									<div class="select hide-select">
-										<div class="color ${this.clrSelec4}"></div>
-									</div>
+					<div class="product-info-content">
+						<p class="descr">${this.description}</p>
+						<p class="price">${this.price}</p>
+						<div class="dec-line"></div>
+						<div class="colors">
+							<p class="title-color">
+								Цвет: <span class="name-color">${this.text}</span>
+											<span class="name-color hide-color">${this.text2}</span>
+											<span class="name-color hide-color">${this.text3}</span>
+											<span class="name-color hide-color">${this.text4}</span>
+							</p>
+							<div class="select-content">
+								<div class="select">
+									<div class="color ${this.clrSelec}"></div>
+								</div>
+								<div class="select hide-select">
+									<div class="color ${this.clrSelec2}"></div>
+								</div>
+								<div class="select hide-select">
+									<div class="color ${this.clrSelec3}"></div>
+								</div>
+								<div class="select hide-select">
+									<div class="color ${this.clrSelec4}"></div>
 								</div>
 							</div>
-								<button class="btn-add">Добавить в корзину</button>
 						</div>
+							<button class="btn-add">Добавить в корзину</button>
+					</div>
 						<div>
 							<img class="picture" src=${this.src} alt=${this.alt}>
 							<img class="picture hide-picture" src=${this.src2} alt=${this.alt}>
 							<img class="picture hide-picture" src=${this.src3} alt=${this.alt}>
 							<img class="picture hide-picture" src=${this.src4} alt=${this.alt}>
 						</div>
-					</div>
 			`;
 			this.parent.append(element);
 		};
@@ -152,7 +223,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		'.product-info-container'
 	).render();
 
-	// Tabs
+	// Реализация работы табов:
 	const titleTabs = document.querySelectorAll('.title-product');
 	const widgets = document.querySelectorAll('.widget');
 	const contentTabs = document.querySelectorAll('.card-container');
@@ -195,7 +266,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
-	// Change colors, names and products
+	// Реализация изменения цвета, названия и изображения продукта:
 	contentTabs.forEach(tab => {
 		const colors = tab.querySelectorAll('.color');
 		const selects = tab.querySelectorAll('.select');
@@ -237,7 +308,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	btnClosedForm.addEventListener('click', closeModal);
 
-	// Form XMLHttpRequest()
+	// Реализация работы с сервером:
 	const message = {
 		loading: 'img/icons/spinner.svg',
 		succsess: 'Спасибо!',
@@ -319,5 +390,3 @@ window.addEventListener('DOMContentLoaded', () => {
 		}, 2000)
 	};
 });
-
-

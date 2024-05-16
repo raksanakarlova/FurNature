@@ -1,0 +1,87 @@
+{
+  "cards": [
+    {
+      "mainimg": "img/firstCard/main.png",
+      "scndimg": "img/firstCard/pink.png",
+      "thrdimg": "img/firstCard/purple.png",
+      "frthimg": "img/firstCard/sea.png",
+      "altimg": "product",
+      "desc": "Удобный стул с элегантным дизайном, идеальный для отдыха и работы",
+      "price": "1.399 RUB",
+      "maintxt": "Голубой",
+      "scndtxt": "Розовый",
+      "thrdtxt": "Фиолетовый",
+      "frthtxt": "Морской",
+      "mainslctr": "blue",
+      "scndslctr": "pink",
+      "thrdslctr": "purple",
+      "frthslctr": "green",
+      "id": "e813"
+    },
+    {
+      "mainimg": "img/secondCard/main.png",
+      "scndimg": "img/secondCard/brown.png",
+      "thrdimg": "img/secondCard/blue.png",
+      "frthimg": "img/secondCard/olive.png",
+      "altimg": "product",
+      "desc": "Эргономичный стул с современным стилем, обеспечивает комфорт и поддержку при сидении",
+      "price": "2.399 RUB",
+      "maintxt": "Зелёный",
+      "scndtxt": "Коричневый",
+      "thrdtxt": "Синий",
+      "frthtxt": "Оливковый",
+      "mainslctr": "green2",
+      "scndslctr": "brown",
+      "thrdslctr": "sea",
+      "frthslctr": "olive",
+      "id": "093f"
+    },
+    {
+      "mainimg": "img/thirdCard/main.png",
+      "scndimg": "img/thirdCard/grey.png",
+      "thrdimg": "img/thirdCard/purple.png",
+      "frthimg": "img/thirdCard/orange.png",
+      "altimg": "product",
+      "desc": "Стильный табурет для комфортного сидения в любом интерьере",
+      "price": "1.199 RUB",
+      "maintxt": "Красный",
+      "scndtxt": "Серый",
+      "thrdtxt": "Фуксия",
+      "frthtxt": "Оранжевый",
+      "mainslctr": "red",
+      "scndslctr": "grey",
+      "thrdslctr": "fuchsia",
+      "frthslctr": "light-brown",
+      "id": "7d10"
+    },
+    {
+      "mainimg": "img/fourthCard/main.png",
+      "scndimg": "img/fourthCard/red.png",
+      "thrdimg": "img/fourthCard/pink.png",
+      "frthimg": "img/fourthCard/green.png",
+      "altimg": "product",
+      "desc": "Этот стул — ваш верный спутник  в мире сидения",
+      "price": "3.199 RUB",
+      "maintxt": "Чёрный",
+      "scndtxt": "Оранжевый",
+      "thrdtxt": "Розовый",
+      "frthtxt": "Салатовый",
+      "mainslctr": "black",
+      "scndslctr": "orange",
+      "thrdslctr": "pink2",
+      "frthslctr": "light-green",
+      "id": "0e94"
+    }
+  ],
+  "requests": [
+    {
+      "id": "2b39",
+      "name": "Раксана",
+      "phone": "510234567"
+    },
+    {
+      "id": "1927",
+      "mail": "ghjghjghgj@fjfjjf.com"
+    }
+  ]
+}

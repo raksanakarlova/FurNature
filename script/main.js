@@ -149,39 +149,29 @@ window.addEventListener('DOMContentLoaded', () => {
 			this.parent.append(elem);
 		};
 	};
-
-	const getResource = async (url) => {
-		const result = await fetch(url);
-
-		if(!result.ok) {
-			throw new Error(`Couldn't fetch ${url}, status: ${result.status}`);
-		};
-
-		return result.json();
-	};
-
-	getResource('http://localhost:3000/cards')
+	
+	// Axios
+	axios.get('http://localhost:3000/cards')
 		.then(data => {
-			data.forEach(({
+				data.data.forEach(({
 				mainimg, scndimg, thrdimg, frthimg,
 				altimg, desc, price,
 				maintxt, scndtxt, thrdtxt, frthtxt,
 				mainslctr, scndslctr, thrdslctr, frthslctr
-			}) => {
-				new ProductCard(
-					mainimg, scndimg, thrdimg, frthimg,
-					altimg, desc, price,
-					maintxt, scndtxt, thrdtxt, frthtxt,
-					mainslctr, scndslctr, thrdslctr, frthslctr,
-					'.product-info-container'
-				).render();
+				}) => {
+					new ProductCard(
+						mainimg, scndimg, thrdimg, frthimg,
+						altimg, desc, price,
+						maintxt, scndtxt, thrdtxt, frthtxt,
+						mainslctr, scndslctr, thrdslctr, frthslctr,
+						'.product-info-container'
+					).render();
+				});
+				setupTabs(); // устанавливаю обработчик после создания карточек
 			});
 
-			setupTabs(); // устанавливаю обработчик после создания карточек
-		});
-
 	function setupTabs() {
-		// Реализация работы табов:
+	  // Реализация работы табов:
 		const titles = document.querySelectorAll('.title-product');
 		const widgets = document.querySelectorAll('.widget');
 		const contents = document.querySelectorAll('.card-container') // обновляю селектор для новых элементов
@@ -269,7 +259,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 
 	btnConsulting.addEventListener('click', openModal)
-
 	btnClosedForm.addEventListener('click', closeModal);
 
 	// Реализация отправки формы с данными на сервер:
